@@ -45,5 +45,3 @@ function calculateFlux(a, b, c, d) {
         return c;
     }
 }
-
-module.exports = { calculateFlux };
