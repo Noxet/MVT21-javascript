@@ -1,0 +1,26 @@
+{
+    "watchList": [
+        {
+            "title": "The Matrix Resurrections",
+            "year": 2021,
+            "rating": null
+        }
+    ],
+    "favourites": [
+        {
+            "title": "Breaking Bad",
+            "year": 2008,
+            "rating": 10
+        },
+        {
+            "title": "Shutter Island",
+            "year": 2010,
+            "rating": 9
+        },
+        {
+            "title": "Pulp Fiction",
+            "year": 1994,
+            "rating": 10
+        }
+    ]
+}

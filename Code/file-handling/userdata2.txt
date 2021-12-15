@@ -1,0 +1,4 @@
+Kalle 12 5
+Albin 18 12
+Jasmine 16 8
+Viktoria 20 13
