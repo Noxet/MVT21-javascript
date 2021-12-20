@@ -5,6 +5,7 @@ const app = express();
 const port = 1337;
 
 // get the movies map from the "DB" file
+// Only necessary to do this when the variable is not declared in this file
 const moviesdb = require("./moviesdb");
 let movies = moviesdb.moviesDB;
 

@@ -60,4 +60,5 @@ let movies = {
     ]
 }
 
+// only necessary when placing this variable in its own js file.
 exports.moviesDB = movies;
