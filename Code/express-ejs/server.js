@@ -53,6 +53,9 @@ app.post("/addMS", function (req, res) {
     } else if (mstype === "serie") {
         ms["series"].push(msToAdd);
     } else {
+        /* This can indeed happen, since we can modify what we send.
+         * Never trust the client, always verify on the server side!
+         */
         console.log("This will NEVER happen :)");
         res.send("WTF!");
     }
