@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+<body>
+    <h1>Suggestion of the day!</h1>
+
+    <form action="/">
+        <input type="submit" value="Take me back!">
+    </form>
+
+    <% if (suggestion===null) { %>
+        <p>These are not the droids you're looking for</p>
+        <% } else { %>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Rating</th>
+                </tr>
+                <tr>
+                    <td>
+                        <%= suggestion["title"] %>
+                    </td>
+                    <td>
+                        <%= suggestion["year"] %>
+                    </td>
+                    <td>
+                        <%= suggestion["rating"] %>
+                    </td>
+                </tr>
+            </table>
+            <% } %>
+</body>
+
+</html>

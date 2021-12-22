@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+<body>
+    <h1>Movies / series with rating <%= rating %>
+    </h1>
+
+    <form action="/">
+        <input type="submit" value="Take me back!">
+    </form>
+
+    <h2>Movies</h2>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Rating</th>
+        </tr>
+        <% for (const movie of movies) { %>
+            <tr>
+                <td>
+                    <%= movie["title"] %>
+                </td>
+                <td>
+                    <%= movie["year"] %>
+                </td>
+                <td>
+                    <%= movie["rating"] %>
+                </td>
+            </tr>
+            <% } %>
+    </table>
+
+    <h2>Series</h2>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Rating</th>
+        </tr>
+        <% for (const serie of series) { %>
+            <tr>
+                <td>
+                    <%= serie["title"] %>
+                </td>
+                <td>
+                    <%= serie["year"] %>
+                </td>
+                <td>
+                    <%= serie["rating"] %>
+                </td>
+            </tr>
+            <% } %>
+    </table>
+</body>
+
+</html>

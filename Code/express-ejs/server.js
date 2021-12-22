@@ -18,9 +18,14 @@ let ms = msdb.msDB;
  * ROUTES
  */
 
+// serve all static files, such as .html, .js etc.
+app.use("/", express.static("public"));
+
+/*
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });
+*/
 
 app.get("/getAll", function (req, res) {
     /*
@@ -63,6 +68,97 @@ app.post("/addMS", function (req, res) {
     res.send("Added!");
 });
 
-app.listen(port, function () {
-    console.log("Server started!");
+app.get("/getFiltered", function (req, res) {
+    let rating = Number(req.query["filterRating"]);
+
+    let filteredms = filterMS(ms, rating);
+
+    res.render("pages/getfiltered", {
+        rating: rating,
+        movies: filteredms["movies"],
+        series: filteredms["series"]
+    });
 });
+
+app.get("/suggest", function (req, res) {
+    let mstype = req.query["mstype"];
+    let rating = Number(req.query["rating"]);
+
+    let suggestion = suggest(ms, mstype, rating);
+
+    res.render("pages/suggest", { suggestion: suggestion });
+});
+
+/*
+ * FUNCTIONS
+ */
+
+/**
+ * Returns a random suggestion of a movie / serie
+ * 
+ * @param {Object} ms 
+ * @param {String} mstype 
+ * @param {Number} rating 
+ * @returns A single movie/serie as an object
+ */
+function suggest(ms, mstype, rating) {
+    let suggestions = [];
+
+    if (mstype === "movie") {
+        for (const movie of ms["movies"]) {
+            if (movie["rating"] === rating) {
+                suggestions.push(movie);
+            }
+        }
+    } else if (mstype === "serie") {
+        for (const serie of ms["series"]) {
+            if (serie["rating"] === rating) {
+                suggestions.push(serie);
+            }
+        }
+    }
+
+    if (suggestions.length === 0) {
+        return null;
+    } else {
+        let rndIdx = Math.floor(Math.random() * suggestions.length);
+        return suggestions[rndIdx];
+    }
+
+}
+
+// TESTABLE :)
+function filterMS(ms, rating) {
+    let filteredms = {
+        "movies": [],
+        "series": []
+    };
+
+    for (const movie of ms["movies"]) {
+        if (movie["rating"] === rating) {
+            filteredms["movies"].push(movie);
+        }
+    }
+
+    for (const serie of ms["series"]) {
+        if (serie["rating"] === rating) {
+            filteredms["series"].push(serie);
+        }
+    }
+
+    return filteredms;
+}
+
+if (process.argv.length >= 3 && process.argv[2] === "start") {
+    app.listen(port, function () {
+        console.log("Server started!");
+    });
+} else {
+    console.log('Please run "node server.js start" to start the server');
+}
+
+
+module.exports = {
+    filterMS,
+    suggest
+}

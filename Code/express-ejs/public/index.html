@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+
+<body>
+    <h1>Testflix</h1>
+
+    <ul>
+        <li><a href="/getAll">Get all movies / series</a></li>
+    </ul>
+
+    <h2>Add movie/serie</h2>
+    <form action="/addMS" method="POST">
+        <select name="mstype">
+            <option value="movie">Movie</option>
+            <option value="serie">Serie</option>
+        </select>
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="year" placeholder="Year">
+        <input type="text" name="rating" placeholder="Rating (1-10) or empty">
+        <input type="submit" value="Add!">
+    </form>
+
+    <h2>Add movie/serie 2.0 (now with client verification)</h2>
+    <form action="/addMS" id="addForm2" method="POST">
+        <select name="mstype">
+            <option value="movie">Movie</option>
+            <option value="serie">Serie</option>
+        </select>
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="year" placeholder="Year">
+        <input type="text" id="addRating" name="rating" placeholder="Rating (1-10) or empty">
+        <input type="button" value="Add!" onclick="addCheck()">
+    </form>
+
+    <h2>Filter movies and series</h2>
+    <form action="/getFiltered" method="GET">
+        <input type="text" name="filterRating" placeholder="rating (1-10) or empty">
+        <input type="submit" value="Filter!">
+    </form>
+
+    <h2>I can't brain today, gimme a suggestion</h2>
+    <form action="/suggest">
+        <select name="mstype">
+            <option value="movie">Movie</option>
+            <option value="serie">Serie</option>
+        </select>
+        <input type="text" name="rating" placeholder="rating (1-10) or empty">
+        <input type="submit" value="Suggest!">
+    </form>
+
+    <script src="checker.js"></script>
+</body>
+
+</html>
